@@ -157,42 +157,47 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* Mobile dropdown - separate from navbar
-          so it does not affect touch events */}
-      {isMobileMenuOpen && (
-        <div className="fixed top-16 left-0 right-0 z-[99] bg-white border-t border-gray-100 shadow-[0_4px_12px_rgba(0,0,0,0.1)] pointer-events-auto">
-          <div className="pt-3 px-5 pb-6">
-            {mobileNavLinks.map((link) => {
-              const isActive = pathname === link.href
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={closeMobileMenu}
-                  className={`block w-full text-left text-base py-4 border-b border-gray-100 touch-manipulation ${
-                    isActive ? 'text-brand-red font-semibold' : 'text-brand-dark font-medium'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              )
-            })}
-            <OrderNowButton
-              onClick={closeMobileMenu}
-              className="flex items-center justify-center gap-1.5 w-full mt-4 bg-brand-yellow text-brand-dark rounded-full py-3 px-4 text-base font-bold touch-manipulation shadow-md"
-            >
-              🛵 Order Now
-            </OrderNowButton>
-            <a
-              href={BUSINESS.phoneHref}
-              onClick={closeMobileMenu}
-              className="flex items-center justify-center mt-3 bg-brand-red text-white rounded-full py-3 px-4 text-base font-semibold touch-manipulation"
-            >
-              📞 Call Now
-            </a>
-          </div>
+      {/* Mobile dropdown - separate from navbar so it does not affect
+          touch events. Always rendered, just CSS-hidden when closed
+          (rather than JS-conditionally unmounted) so the Order Now
+          button's own modal state survives being "closed" by its own
+          click handler - see OrderNowButton.tsx. */}
+      <div
+        className={`fixed top-16 left-0 right-0 z-[99] bg-white border-t border-gray-100 shadow-[0_4px_12px_rgba(0,0,0,0.1)] pointer-events-auto ${
+          isMobileMenuOpen ? '' : 'hidden'
+        }`}
+      >
+        <div className="pt-3 px-5 pb-6">
+          {mobileNavLinks.map((link) => {
+            const isActive = pathname === link.href
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={closeMobileMenu}
+                className={`block w-full text-left text-base py-4 border-b border-gray-100 touch-manipulation ${
+                  isActive ? 'text-brand-red font-semibold' : 'text-brand-dark font-medium'
+                }`}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
+          <OrderNowButton
+            onClick={closeMobileMenu}
+            className="flex items-center justify-center gap-1.5 w-full mt-4 bg-brand-yellow text-brand-dark rounded-full py-3 px-4 text-base font-bold touch-manipulation shadow-md"
+          >
+            🛵 Order Now
+          </OrderNowButton>
+          <a
+            href={BUSINESS.phoneHref}
+            onClick={closeMobileMenu}
+            className="flex items-center justify-center mt-3 bg-brand-red text-white rounded-full py-3 px-4 text-base font-semibold touch-manipulation"
+          >
+            📞 Call Now
+          </a>
         </div>
-      )}
+      </div>
     </>
   )
 }
