@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { BUSINESS, isOpenNow } from '@/lib/constants'
-import OrderOnlineModal from '@/components/OrderOnlineModal'
+import OrderNowButton from '@/components/OrderNowButton'
 
 const navLinks = [
   { label: 'Menu',    href: '/menu'    },
-  { label: 'About',   href: '/#about'   },
+  { label: 'About',   href: '/about'   },
   { label: 'Hours',   href: '/#hours'   },
   { label: 'Contact', href: '/#contact' },
 ]
@@ -22,7 +22,6 @@ export default function Navbar() {
   const pathname = usePathname()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
   // Start as "unknown" so server-rendered HTML and the first client render
   // are identical, then refresh periodically so the badge doesn't go stale
   // if the tab is left open across an open/close boundary.
@@ -43,98 +42,120 @@ export default function Navbar() {
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false)
 
+  const statusBadgeStyle: React.CSSProperties = open
+    ? {
+        background: 'rgba(110, 139, 92, 0.14)',
+        border: '1px solid rgba(110, 139, 92, 0.45)',
+        color: isScrolled ? '#3F5335' : '#A9C199',
+      }
+    : {
+        background: 'rgba(193, 80, 45, 0.14)',
+        border: '1px solid rgba(193, 80, 45, 0.45)',
+        // Closed state needs a darker tone once scrolled (white bar)
+        // to stay readable; the pale tone still works on the
+        // transparent/dark hero background.
+        color: isScrolled ? '#8A3B20' : 'rgba(255, 255, 255, 0.7)',
+      }
+
+  const statusBadge = open !== null && (
+    <span
+      className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium whitespace-nowrap"
+      style={statusBadgeStyle}
+    >
+      {open ? '● Open Now' : '○ Currently Closed'}
+    </span>
+  )
+
   return (
     <>
-      {/* Navbar bar - only as tall as the bar itself */}
+      {/* Navbar bar - only as tall as the bar itself. Left brand / right
+          nav+CTA sit at their natural width. On mobile the status badge
+          flows inline next to the brand (no room to truly center it
+          without colliding with the brand text); on desktop it's a
+          separate absolutely-centered overlay below instead. */}
       <div
         className={`fixed top-0 left-0 right-0 h-16 z-[100] flex items-center justify-between px-5 pointer-events-auto transition-all duration-300 ${
           isScrolled ? 'bg-white shadow-[0_2px_10px_rgba(0,0,0,0.1)]' : 'bg-transparent shadow-none'
         }`}
       >
-        {/* Logo + status badge */}
+        {/* Left zone - brand (+ inline status badge on mobile) */}
         <div className="flex items-center gap-2">
           <Link
             href="/"
             onClick={closeMobileMenu}
-            className="font-display text-2xl font-bold text-brand-red"
+            className="font-display text-2xl font-bold text-brand-red whitespace-nowrap"
           >
             El Nopalito
           </Link>
-          {open !== null && (
-            <span
-              className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium whitespace-nowrap"
-              style={{
-                background: 'rgba(243, 156, 18, 0.12)',
-                border: '1px solid rgba(243, 156, 18, 0.4)',
-                // Closed state needs a darker tone once scrolled (white bar)
-                // to stay readable; the pale tone still works on the
-                // transparent/dark hero background.
-                color: open ? '#F39C12' : isScrolled ? '#92400E' : 'rgba(243, 156, 18, 0.55)',
-              }}
-            >
-              {open ? '● Open Now' : '○ Currently Closed'}
-            </span>
-          )}
+          <div className="md:hidden">{statusBadge}</div>
         </div>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-6">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-medium touch-manipulation ${
-                  isActive
-                    ? 'text-brand-red font-semibold'
-                    : isScrolled
-                    ? 'text-brand-dark'
-                    : 'text-white'
-                }`}
-              >
-                {link.label}
-              </Link>
-            )
-          })}
+        {/* Right zone - desktop nav + CTAs, mobile hamburger */}
+        <div className="flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-sm font-medium touch-manipulation ${
+                    isActive
+                      ? 'text-brand-red font-semibold'
+                      : isScrolled
+                      ? 'text-brand-dark'
+                      : 'text-white'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
+            <a
+              href={BUSINESS.phoneHref}
+              className={`inline-flex items-center gap-1.5 text-white py-2 px-4 rounded-full text-sm font-semibold whitespace-nowrap touch-manipulation ${
+                isScrolled ? 'bg-brand-red border-none' : 'bg-transparent border-2 border-white'
+              }`}
+            >
+              📞 Call Now
+            </a>
+            <OrderNowButton className="inline-flex items-center gap-1.5 min-h-[44px] bg-brand-yellow text-brand-dark py-2 px-4 rounded-full text-sm font-bold whitespace-nowrap touch-manipulation shadow-md hover:brightness-95 transition-all">
+              🛵 Order Now
+            </OrderNowButton>
+          </div>
+
+          {/* Mobile hamburger */}
           <button
             type="button"
-            onClick={() => setIsOrderModalOpen(true)}
-            className="inline-flex items-center gap-1.5 bg-brand-yellow text-brand-dark py-2 px-4 rounded-full text-sm font-bold whitespace-nowrap touch-manipulation shadow-md hover:brightness-95 transition-all"
+            aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            className="md:hidden flex flex-col justify-center items-center gap-[5px] w-11 h-11 touch-manipulation"
           >
-            🛵 Order Now
+            {isMobileMenuOpen ? (
+              <span className={`text-xl font-bold leading-none ${isScrolled ? 'text-brand-dark' : 'text-white'}`}>
+                ✕
+              </span>
+            ) : (
+              <>
+                <span className={`block w-6 h-0.5 rounded-xs ${isScrolled ? 'bg-brand-dark' : 'bg-white'}`} />
+                <span className={`block w-6 h-0.5 rounded-xs ${isScrolled ? 'bg-brand-dark' : 'bg-white'}`} />
+                <span className={`block w-6 h-0.5 rounded-xs ${isScrolled ? 'bg-brand-dark' : 'bg-white'}`} />
+              </>
+            )}
           </button>
-          <a
-            href={BUSINESS.phoneHref}
-            className={`inline-flex items-center gap-1.5 text-white py-2 px-4 rounded-full text-sm font-semibold whitespace-nowrap touch-manipulation ${
-              isScrolled ? 'bg-brand-red border-none' : 'bg-transparent border-2 border-white'
-            }`}
-          >
-            📞 Call Now
-          </a>
         </div>
-
-        {/* Mobile hamburger */}
-        <button
-          type="button"
-          aria-label="Toggle menu"
-          aria-expanded={isMobileMenuOpen}
-          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-          className="md:hidden flex flex-col justify-center items-center gap-[5px] w-11 h-11 touch-manipulation"
-        >
-          {isMobileMenuOpen ? (
-            <span className={`text-xl font-bold leading-none ${isScrolled ? 'text-brand-dark' : 'text-white'}`}>
-              ✕
-            </span>
-          ) : (
-            <>
-              <span className={`block w-6 h-0.5 rounded-xs ${isScrolled ? 'bg-brand-dark' : 'bg-white'}`} />
-              <span className={`block w-6 h-0.5 rounded-xs ${isScrolled ? 'bg-brand-dark' : 'bg-white'}`} />
-              <span className={`block w-6 h-0.5 rounded-xs ${isScrolled ? 'bg-brand-dark' : 'bg-white'}`} />
-            </>
-          )}
-        </button>
       </div>
+
+      {/* Live open/closed status on desktop - absolutely centered over
+          the bar, independent of the brand/nav zone widths. Desktop-only
+          since it needs more clear space than mobile has (mobile shows
+          it inline next to the brand instead, above). */}
+      {open !== null && (
+        <div className="hidden md:flex fixed top-0 left-1/2 -translate-x-1/2 h-16 items-center z-[100] pointer-events-none">
+          {statusBadge}
+        </div>
+      )}
 
       {/* Mobile dropdown - separate from navbar
           so it does not affect touch events */}
@@ -156,13 +177,12 @@ export default function Navbar() {
                 </Link>
               )
             })}
-            <button
-              type="button"
-              onClick={() => { closeMobileMenu(); setIsOrderModalOpen(true) }}
+            <OrderNowButton
+              onClick={closeMobileMenu}
               className="flex items-center justify-center gap-1.5 w-full mt-4 bg-brand-yellow text-brand-dark rounded-full py-3 px-4 text-base font-bold touch-manipulation shadow-md"
             >
               🛵 Order Now
-            </button>
+            </OrderNowButton>
             <a
               href={BUSINESS.phoneHref}
               onClick={closeMobileMenu}
@@ -173,8 +193,6 @@ export default function Navbar() {
           </div>
         </div>
       )}
-
-      <OrderOnlineModal isOpen={isOrderModalOpen} onClose={() => setIsOrderModalOpen(false)} />
     </>
   )
 }

@@ -19,7 +19,7 @@ export default function Footer() {
     <footer
       className="w-full bg-brand-dark
         flex flex-col items-center"
-      style={{ borderTop: '4px solid #C0392B' }}
+      style={{ borderTop: '4px solid #C1502D' }}
     >
       <div className="w-full max-w-5xl mx-auto
         px-8 sm:px-12 lg:px-16 pt-20 md:pt-24 pb-16">

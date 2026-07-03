@@ -15,7 +15,7 @@ export default function MenuPage() {
       <section
         className="w-full flex flex-col items-center text-center"
         style={{
-          background: 'linear-gradient(to bottom, #1A1A1A, #2C0A0A)'
+          background: 'linear-gradient(to bottom, #26211D, #3A2318)'
         }}
       >
         <div className="h-28 md:h-36" />

@@ -9,15 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'brand-red':          '#C0392B',
-        'brand-red-light':    '#E74C3C',
-        'brand-green':        '#27AE60',
-        'brand-green-dark':   '#1E8449',
-        'brand-yellow':       '#F39C12',
-        'brand-cream':        '#FDF6E3',
-        'brand-cream-dark':   '#F5ECD7',
-        'brand-dark':         '#1A1A1A',
-        'brand-gray':         '#6B7280',
+        // Warm minimalist palette — terracotta (clay/marinade), agave
+        // (nopalito green), maize (corn), charcoal, and off-white.
+        'brand-red':          '#C1502D',
+        'brand-red-light':    '#D97748',
+        'brand-green':        '#6E8B5C',
+        'brand-green-dark':   '#54704A',
+        'brand-yellow':       '#E0A73E',
+        'brand-cream':        '#F6F0E4',
+        'brand-cream-dark':   '#EBE1CC',
+        'brand-dark':         '#26211D',
+        'brand-gray':         '#7C7267',
       },
       fontFamily: {
         display: ['var(--font-playfair)', 'serif'],

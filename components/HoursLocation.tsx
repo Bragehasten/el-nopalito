@@ -53,7 +53,7 @@ export default function HoursLocation() {
                   ● OPEN NOW
                 </span>
               ) : (
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold bg-red-500/20 border border-red-500/40 text-red-400">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold bg-brand-red/20 border border-brand-red/40 text-brand-red-light">
                   ● CLOSED NOW
                 </span>
               )}

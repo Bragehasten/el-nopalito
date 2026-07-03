@@ -109,6 +109,7 @@ export const menuItems: MenuItem[] = [
     description: "Meat of your choice with rice, beans, lettuce, tomato, onion, cheese and avocado",
     price: 8.00,
     category: "mains",
+    popular: true,
   },
   {
     id: "main-quesadilla",
@@ -116,6 +117,7 @@ export const menuItems: MenuItem[] = [
     description: "Meat of your choice with melted cheese and sour cream",
     price: 8.00,
     category: "mains",
+    popular: true,
   },
   {
     id: "main-torta",

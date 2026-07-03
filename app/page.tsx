@@ -1,12 +1,12 @@
 import Hero from '@/components/Hero'
-import AboutSection from '@/components/AboutSection'
+import MenuHighlights from '@/components/MenuHighlights'
 import HoursLocation from '@/components/HoursLocation'
 
 export default function Home() {
   return (
     <main className="w-full">
       <Hero />
-      <AboutSection />
+      <MenuHighlights />
       <HoursLocation />
     </main>
   )
