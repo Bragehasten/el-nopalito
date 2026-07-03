@@ -68,17 +68,15 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Navbar bar - only as tall as the bar itself. Left brand / right
-          nav+CTA sit at their natural width. On mobile the status badge
-          flows inline next to the brand (no room to truly center it
-          without colliding with the brand text); on desktop it's a
-          separate absolutely-centered overlay below instead. */}
+      {/* Navbar bar - only as tall as the bar itself. Left brand + status
+          badge sit at their natural width; right nav+CTA also natural
+          width. */}
       <div
         className={`fixed top-0 left-0 right-0 h-16 z-[100] flex items-center justify-between px-5 pointer-events-auto transition-all duration-300 ${
           isScrolled ? 'bg-white shadow-[0_2px_10px_rgba(0,0,0,0.1)]' : 'bg-transparent shadow-none'
         }`}
       >
-        {/* Left zone - brand (+ inline status badge on mobile) */}
+        {/* Left zone - brand + status badge, all sizes */}
         <div className="flex items-center gap-2">
           <Link
             href="/"
@@ -87,7 +85,7 @@ export default function Navbar() {
           >
             El Nopalito
           </Link>
-          <div className="md:hidden">{statusBadge}</div>
+          {statusBadge}
         </div>
 
         {/* Right zone - desktop nav + CTAs, mobile hamburger */}
@@ -146,16 +144,6 @@ export default function Navbar() {
           </button>
         </div>
       </div>
-
-      {/* Live open/closed status on desktop - absolutely centered over
-          the bar, independent of the brand/nav zone widths. Desktop-only
-          since it needs more clear space than mobile has (mobile shows
-          it inline next to the brand instead, above). */}
-      {open !== null && (
-        <div className="hidden md:flex fixed top-0 left-1/2 -translate-x-1/2 h-16 items-center z-[100] pointer-events-none">
-          {statusBadge}
-        </div>
-      )}
 
       {/* Mobile dropdown - separate from navbar so it does not affect
           touch events. Always rendered, just CSS-hidden when closed

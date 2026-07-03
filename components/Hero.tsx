@@ -1,13 +1,11 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
-import OrderOnlineModal from '@/components/OrderOnlineModal'
 import { BUSINESS } from '@/lib/constants'
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
 
   useEffect(() => {
     const video = videoRef.current
@@ -121,24 +119,11 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* Conversion row - primary Order Now + secondary View Menu,
-            side by side at all sizes; even split on mobile, natural
-            width from md up */}
+        {/* CTA row - single "See Our Menu" link, centered */}
         <div
           className="flex flex-row items-center justify-center gap-3 md:gap-4 mt-6 md:mt-8 animate-fade-in-up"
           style={{ animationDelay: '300ms' }}
         >
-          <button
-            type="button"
-            onClick={() => setIsOrderModalOpen(true)}
-            className="flex-1 md:flex-none md:w-auto min-h-[44px] inline-flex items-center justify-center gap-2
-              bg-brand-yellow text-brand-dark px-8 py-3 md:py-4
-              rounded-full font-bold text-base
-              transition-all duration-200 shadow-lg shadow-orange-500/30
-              hover:scale-105 whitespace-nowrap"
-          >
-            🛵 Order Now
-          </button>
           <Link
             href="/menu"
             className="flex-1 md:flex-none md:w-auto min-h-[44px] inline-flex items-center justify-center
@@ -187,8 +172,6 @@ export default function Hero() {
           </span>
         </div>
       </div>
-
-      <OrderOnlineModal isOpen={isOrderModalOpen} onClose={() => setIsOrderModalOpen(false)} />
     </section>
   )
 }
