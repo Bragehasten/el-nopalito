@@ -3,12 +3,11 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import OrderOnlineModal from '@/components/OrderOnlineModal'
-import { useDirectionsUrl } from '@/lib/directions'
+import { BUSINESS } from '@/lib/constants'
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
-  const directionsUrl = useDirectionsUrl()
 
   useEffect(() => {
     const video = videoRef.current
@@ -43,9 +42,9 @@ export default function Hero() {
       id="home"
       className="w-full relative min-h-[100dvh]
         flex items-center justify-center
-        overflow-hidden py-20 md:py-24"
+        overflow-hidden pt-20 pb-28 md:py-24"
       style={{
-        background: 'linear-gradient(to bottom, #1A1A1A, #2C0A0A)'
+        background: 'linear-gradient(to bottom, #26211D, #3A2318)'
       }}>
       {/* Background video - fallback gradient above shows
           until this paints and if it fails to load */}
@@ -67,41 +66,49 @@ export default function Hero() {
           pointer-events-none so it never blocks taps */}
       <div
         className="absolute inset-0 z-[1] bg-gradient-to-b
-          from-black/60 via-black/40 to-black/60"
+          from-brand-dark/70 via-brand-dark/45 to-brand-dark/70"
         style={{ pointerEvents: 'none' }}
       />
 
-      {/* Main content - z-10 sits above video and overlay */}
+      {/* Main content - z-20 sits above video and overlay */}
       <div
-        className="relative max-w-4xl mx-auto px-6 text-center"
-        style={{ zIndex: 10 }}
+        className="relative z-20 max-w-4xl mx-auto px-6 text-center"
       >
         {/* Headline */}
-        <div className="mb-4 md:mb-6">
-          <h1 className="font-display leading-tight">
+        <div className="mb-2 md:mb-6 animate-fade-in-up" style={{ animationDelay: '0ms' }}>
+          <h1 className="font-display leading-[1.1] md:leading-tight">
+            <span className="block text-xl md:text-2xl
+              font-semibold text-white/80 tracking-wide uppercase mb-1">
+              Port St. Lucie&apos;s
+            </span>
             <span className="block text-5xl md:text-7xl
               font-black text-white">
-              Authentic Mexican
+              Premier Authentic
             </span>
             <span className="block text-5xl md:text-7xl
               font-black text-brand-red">
-              Street Food
-            </span>
-            <span className="block text-2xl md:text-3xl
-              font-normal text-white/80 mt-2">
-              in Port St. Lucie
+              Taqueria
             </span>
           </h1>
         </div>
 
+        {/* Sub-headline */}
+        <p
+          className="text-xl md:text-2xl text-brand-yellow font-semibold mt-1 md:mt-4 mb-2 md:mb-6 animate-fade-in-up"
+          style={{ animationDelay: '150ms' }}
+        >
+          Made Fresh Every Day
+        </p>
+
         {/* Divider */}
-        <div className="flex justify-center mb-3 md:mb-10">
+        <div className="flex justify-center mb-2 md:mb-10 animate-fade-in-up" style={{ animationDelay: '150ms' }}>
           <div className="w-16 h-1 bg-brand-red
             rounded-full" />
         </div>
 
-        {/* Description */}
-        <div className="mb-6 md:mb-10">
+        {/* Description - hidden on mobile to save vertical space, video
+            and headline carry the message there; visible from md up */}
+        <div className="hidden md:block mb-6 md:mb-10 animate-fade-in-up" style={{ animationDelay: '150ms' }}>
           <p className="font-body text-base md:text-xl
             text-white/80 leading-relaxed">
             Handmade tortillas. Bold flavors.
@@ -114,54 +121,49 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* Primary CTA - full-width (capped) to dominate the secondary row */}
-        <div className="flex justify-center mb-4">
+        {/* Conversion row - primary Order Now + secondary View Menu,
+            side by side at all sizes; even split on mobile, natural
+            width from md up */}
+        <div
+          className="flex flex-row items-center justify-center gap-3 md:gap-4 mt-6 md:mt-8 animate-fade-in-up"
+          style={{ animationDelay: '300ms' }}
+        >
           <button
             type="button"
             onClick={() => setIsOrderModalOpen(true)}
-            className="w-full max-w-xs min-h-[44px] inline-flex items-center justify-center gap-2
-              bg-brand-yellow text-brand-dark px-8 py-4
+            className="flex-1 md:flex-none md:w-auto min-h-[44px] inline-flex items-center justify-center gap-2
+              bg-brand-yellow text-brand-dark px-8 py-3 md:py-4
               rounded-full font-bold text-base
               transition-all duration-200 shadow-lg shadow-orange-500/30
               hover:scale-105 whitespace-nowrap"
           >
             🛵 Order Now
           </button>
-        </div>
-
-        {/* Secondary CTAs - ghost/outline style so they don't compete
-            with the primary Order Now button */}
-        <div className="grid grid-cols-2 gap-4 max-w-xs mx-auto">
           <Link
             href="/menu"
-            className="w-full min-h-[44px] inline-flex items-center justify-center
-              border-2 border-white text-white px-5 py-3
-              rounded-full font-semibold text-sm
-              transition-all duration-200 hover:bg-white/10
+            className="flex-1 md:flex-none md:w-auto min-h-[44px] inline-flex items-center justify-center
+              border-2 border-white text-white px-8 py-3 md:py-4
+              rounded-full font-semibold text-base
+              transition-colors duration-300 hover:bg-white hover:text-brand-dark
               whitespace-nowrap"
           >
             See Our Menu
           </Link>
-          <a
-            href={directionsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full min-h-[44px] inline-flex items-center justify-center
-              border-2 border-white text-white px-5 py-3
-              rounded-full font-semibold text-sm
-              transition-all duration-200 hover:bg-white/10
-              whitespace-nowrap"
-            style={{
-              WebkitTapHighlightColor: 'transparent',
-              touchAction: 'manipulation'
-            }}
-          >
-            Get Directions
-          </a>
+        </div>
+
+        {/* Trust badges - social proof */}
+        <div
+          className="flex flex-wrap items-center justify-center gap-3 mt-4 md:mt-6 animate-fade-in-up"
+          style={{ animationDelay: '450ms' }}
+        >
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-dark/50 backdrop-blur-sm border border-white/10 px-4 py-2 text-sm font-medium text-white">
+            <span className="text-brand-yellow tracking-tight">★★★★★</span>
+            {BUSINESS.googleRating} · {BUSINESS.googleReviewCount} Google Reviews
+          </span>
         </div>
 
         {/* Scroll indicator - in-flow on mobile only */}
-        <div className="flex justify-center mt-8 md:hidden" style={{ pointerEvents: 'none' }}>
+        <div className="flex justify-center mt-4 md:hidden" style={{ pointerEvents: 'none' }}>
           <div className="w-9 h-9 border-2 border-white/30 rounded-full flex items-center justify-center animate-bounce">
             <span className="text-white/60 text-sm">↓</span>
           </div>
