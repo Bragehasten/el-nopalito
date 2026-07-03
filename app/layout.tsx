@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Playfair_Display, Inter } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import ContactBar from '@/components/ContactBar'
@@ -103,6 +104,7 @@ export default function RootLayout({
           aria-hidden="true"
         />
         <MobileBar />
+        <Analytics />
       </body>
     </html>
   )
