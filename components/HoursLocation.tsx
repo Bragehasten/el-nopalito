@@ -153,7 +153,7 @@ export default function HoursLocation() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="El Nopalito Location"
-                className="w-full h-full"
+                className="w-full h-full invert-[.9] hue-rotate-180 contrast-75 saturate-150"
                 suppressHydrationWarning
               />
             </div>
