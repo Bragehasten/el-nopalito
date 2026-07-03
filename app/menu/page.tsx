@@ -2,16 +2,62 @@ import type { Metadata } from 'next'
 import MenuSection from '@/components/MenuSection'
 import OrderNowButton from '@/components/OrderNowButton'
 import MenuStickyOrderBar from '@/components/MenuStickyOrderBar'
+import { menuItems, menuCategories } from '@/data/menuData'
+
+const MENU_TITLE = 'Menu | El Nopalito'
+const MENU_DESCRIPTION =
+  "Explore El Nopalito's full menu — authentic tacos, birria, carne asada, al pastor, burritos and more. Handmade tortillas, real ingredients. Port St. Lucie, FL."
 
 export const metadata: Metadata = {
-  title: 'Menu | El Nopalito',
-  description:
-    "Explore El Nopalito's full menu — authentic tacos, birria, carne asada, al pastor, burritos and more. Handmade tortillas, real ingredients. Port St. Lucie, FL.",
+  title: MENU_TITLE,
+  description: MENU_DESCRIPTION,
+  alternates: {
+    canonical: '/menu',
+  },
+  openGraph: {
+    title: MENU_TITLE,
+    description: MENU_DESCRIPTION,
+    type: 'website',
+    locale: 'en_US',
+    images: ['/opengraph-image'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: MENU_TITLE,
+    description: MENU_DESCRIPTION,
+    images: ['/opengraph-image'],
+  },
+}
+
+const menuJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Menu',
+  name: 'El Nopalito Menu',
+  hasMenuSection: menuCategories.map((category) => ({
+    '@type': 'MenuSection',
+    name: category.label.split(' ').slice(1).join(' '),
+    hasMenuItem: menuItems
+      .filter((item) => item.category === category.value)
+      .map((item) => ({
+        '@type': 'MenuItem',
+        name: item.name,
+        description: item.description,
+        offers: {
+          '@type': 'Offer',
+          price: item.price.toFixed(2),
+          priceCurrency: 'USD',
+        },
+      })),
+  })),
 }
 
 export default function MenuPage() {
   return (
     <main className="w-full">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(menuJsonLd) }}
+      />
       <section
         className="w-full flex flex-col items-center text-center"
         style={{
