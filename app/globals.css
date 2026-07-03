@@ -39,7 +39,7 @@
   /* Offsets anchor scrolling so section tops clear the fixed navbar
      (h-16 in Navbar.tsx) on mobile, where the section spacer is shorter
      than the navbar itself. */
-  #menu, #about, #hours, #contact {
+  #menu, #hours, #contact {
     scroll-margin-top: 4rem;
   }
 

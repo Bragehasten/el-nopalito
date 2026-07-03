@@ -6,7 +6,7 @@ import { BUSINESS, BUSINESS_ADDRESS_LINE, getHoursSummary } from '@/lib/constant
 
 const quickLinks = [
   { label: 'Our Menu',         href: '/menu'    },
-  { label: 'About Us',         href: '/#about'  },
+  { label: 'About Us',         href: '/about'   },
   { label: 'Hours & Location', href: '/#hours'  },
   { label: 'Contact',          href: '/#contact' },
 ]

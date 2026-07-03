@@ -25,7 +25,6 @@ const stats: Stat[] = [
 export default function AboutSection() {
   return (
     <section
-      id="about"
       className="w-full bg-white flex flex-col items-center"
     >
       <div className="h-12 md:h-16" />
@@ -37,21 +36,6 @@ export default function AboutSection() {
           {/* Left column — story */}
           <div className="flex flex-col items-center
             text-center w-full">
-            <p className="text-brand-red text-sm
-              font-semibold tracking-widest uppercase
-              mb-3">
-              OUR STORY
-            </p>
-
-            <h2 className="font-display text-4xl
-              md:text-5xl font-bold text-brand-dark
-              leading-tight mb-6">
-              <span className="block">More Than Just</span>
-              <span className="block text-brand-red">
-                a Food Truck
-              </span>
-            </h2>
-
             <p className="text-brand-gray text-base
             leading-relaxed mb-6">
               El Nopalito has been serving the Port St.
