@@ -24,40 +24,21 @@ export default function HoursLocation() {
   }, [])
 
   return (
-    <section
-      id="hours"
-      className="w-full bg-brand-dark flex flex-col items-center"
-    >
-      <div className="h-12 md:h-16" />
-      <div className="w-full max-w-5xl mx-auto px-8
-        flex flex-col items-center">
-        <div className="w-full grid grid-cols-1
-          lg:grid-cols-2 gap-20 items-start">
+    <section id="hours" className="w-full bg-brand-dark py-20">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
           {/* Left column — hours */}
           <div>
-            {/* Section label + heading */}
-            <div>
-              <p className="text-brand-yellow text-sm font-semibold tracking-widest uppercase mb-3 text-center">
-                FIND US
-              </p>
-              <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-2 text-center">
-                Hours &amp; Location
-              </h2>
-            </div>
-
-            {/* Open / closed status badge */}
-            <div className="mb-8 mt-3 flex justify-center">
-              {open === null ? null : open ? (
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold bg-brand-green/20 border border-brand-green/40 text-brand-green">
-                  ● OPEN NOW
-                </span>
-              ) : (
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold bg-brand-red/20 border border-brand-red/40 text-brand-red-light">
-                  ● CLOSED NOW
-                </span>
-              )}
-            </div>
+            <p className="text-brand-yellow text-sm font-semibold tracking-widest uppercase mb-3 text-center lg:text-left">
+              FIND US
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4 text-center lg:text-left">
+              Hours &amp; Location
+            </h2>
+            <p className="text-white/90 text-lg font-medium mb-8 text-center lg:text-left">
+              {BUSINESS_ADDRESS_LINE}
+            </p>
 
             {/* Hours table */}
             <div>
@@ -71,41 +52,24 @@ export default function HoursLocation() {
                       isToday ? 'bg-white/5 rounded-xl px-3 -mx-3' : ''
                     }`}
                   >
-                    {/* Day name */}
-                    <div className="flex items-center">
-                      {day.open && !isToday && (
-                        <span className="w-2 h-2 rounded-full bg-brand-green inline-block mr-2" />
-                      )}
-                      <span
-                        className={`text-sm ${
-                          isToday
-                            ? 'text-brand-yellow font-bold'
-                            : day.open
-                            ? 'text-white font-medium'
-                            : 'text-white/40 font-medium'
-                        }`}
-                      >
-                        {day.day}
-                      </span>
-                    </div>
+                    <span
+                      className={`text-sm ${
+                        isToday ? 'text-brand-yellow font-bold' : 'text-gray-400 font-medium'
+                      }`}
+                    >
+                      {day.day}
+                    </span>
 
-                    {/* Hours + today label */}
                     <div className="flex items-center gap-2">
                       <span
                         className={`text-sm ${
-                          isToday
-                            ? 'text-brand-yellow font-bold'
-                            : day.open
-                            ? 'text-brand-green font-medium'
-                            : 'text-white/30'
+                          isToday ? 'text-brand-yellow font-bold' : 'text-gray-100 font-medium'
                         }`}
                       >
                         {day.hours}
                       </span>
-                      {isToday && (
-                        <span className="text-brand-yellow text-xs opacity-70">
-                          ← Today
-                        </span>
+                      {isToday && open && (
+                        <span className="text-xs font-bold text-brand-green">🟢 Open Now</span>
                       )}
                     </div>
                   </div>
@@ -113,37 +77,20 @@ export default function HoursLocation() {
               })}
             </div>
 
-            {/* Contact info */}
-            <div className="mt-14 space-y-3 flex flex-col items-center text-center">
-              <div className="flex items-center justify-center gap-3">
-                <span className="text-xl">📞</span>
-                <a
-                  href={BUSINESS.phoneHref}
-                  className="text-brand-yellow hover:text-white font-semibold text-lg transition-colors"
-                >
-                  {BUSINESS.phone}
-                </a>
-              </div>
-              <div className="flex items-start justify-center gap-3">
-                <span className="text-xl">📍</span>
-                <div>
-                  <p className="text-white/70 text-sm leading-snug">{BUSINESS_ADDRESS_LINE}</p>
-                  <a
-                    href={directionsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-brand-yellow text-sm hover:underline mt-1 inline-block"
-                  >
-                    Get Directions →
-                  </a>
-                </div>
-              </div>
+            {/* Phone */}
+            <div className="mt-14 flex justify-center lg:justify-start">
+              <a
+                href={BUSINESS.phoneHref}
+                className="inline-flex items-center gap-3 text-brand-yellow hover:text-white font-semibold text-lg transition-colors"
+              >
+                📞 {BUSINESS.phone}
+              </a>
             </div>
           </div>
 
-          {/* Right column — map */}
+          {/* Right column — map + directions */}
           <div>
-            <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl h-64 md:h-96 lg:h-[520px]">
+            <div className="w-full aspect-[4/3] md:aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/10">
               <iframe
                 width="100%"
                 height="100%"
@@ -157,14 +104,18 @@ export default function HoursLocation() {
                 suppressHydrationWarning
               />
             </div>
-            <p className="mt-4 text-center text-white/50 text-xs">
-              📍 {BUSINESS_ADDRESS_LINE}
-            </p>
+            <a
+              href={directionsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex w-full sm:w-auto items-center justify-center gap-2 border-2 border-brand-red text-brand-red hover:bg-brand-red hover:text-white font-semibold text-sm rounded-full px-6 py-3 transition-colors"
+            >
+              📍 Get Directions →
+            </a>
           </div>
 
         </div>
       </div>
-      <div className="h-12 md:h-16" />
     </section>
   )
 }

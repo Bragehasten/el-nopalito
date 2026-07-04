@@ -8,6 +8,9 @@ export type MenuItem = {
   price: number
   category: MenuCategory
   popular?: boolean
+  spicy?: boolean
+  isNew?: boolean
+  image?: string
 }
 
 export const menuItems: MenuItem[] = [
@@ -20,6 +23,7 @@ export const menuItems: MenuItem[] = [
     price: 2.50,
     category: "tacos",
     popular: true,
+    image: "/images/menu/carne-asada.jpeg",
   },
   {
     id: "taco-alpastor",
@@ -36,6 +40,7 @@ export const menuItems: MenuItem[] = [
     description: "Seasoned grilled chicken with cilantro and roasted onions",
     price: 2.50,
     category: "tacos",
+    image: "/images/menu/tacos-de-pollo.jpeg",
   },
   {
     id: "taco-chorizo",
@@ -52,6 +57,7 @@ export const menuItems: MenuItem[] = [
     description: "Slow-cooked pulled pork, tender and flavorful",
     price: 2.50,
     category: "tacos",
+    image: "/images/menu/tacos-carnitas.jpeg",
   },
   {
     id: "taco-birria",
@@ -61,6 +67,7 @@ export const menuItems: MenuItem[] = [
     price: 2.50,
     category: "tacos",
     popular: true,
+    image: "/images/menu/birria-tacos.jpeg",
   },
   {
     id: "taco-camarones",
@@ -69,6 +76,7 @@ export const menuItems: MenuItem[] = [
     description: "Seasoned shrimp with cilantro, onions and roasted peppers",
     price: 2.75,
     category: "tacos",
+    image: "/images/menu/shrimp-tacos.jpeg",
   },
   {
     id: "taco-campechano",
@@ -77,6 +85,7 @@ export const menuItems: MenuItem[] = [
     description: "Steak and chorizo combo with cilantro and roasted onions",
     price: 3.25,
     category: "tacos",
+    image: "/images/menu/tacos-campechanos.jpeg",
   },
   {
     id: "taco-cabeza",
@@ -93,6 +102,7 @@ export const menuItems: MenuItem[] = [
     price: 3.25,
     category: "tacos",
     popular: true,
+    image: "/images/menu/quesabirria-tacos-port-st-lucie.jpeg",
   },
   {
     id: "taco-texmex",
@@ -110,6 +120,7 @@ export const menuItems: MenuItem[] = [
     price: 8.00,
     category: "mains",
     popular: true,
+    image: "/images/menu/oversized-carne-asada-burrito.jpeg",
   },
   {
     id: "main-quesadilla",
@@ -118,6 +129,7 @@ export const menuItems: MenuItem[] = [
     price: 8.00,
     category: "mains",
     popular: true,
+    image: "/images/menu/quesadilla.jpeg",
   },
   {
     id: "main-torta",
@@ -125,6 +137,7 @@ export const menuItems: MenuItem[] = [
     description: "Mexican sandwich with meat of choice, lettuce, tomato, cheese, onion, jalapeño, mayo and avocado",
     price: 8.00,
     category: "mains",
+    image: "/images/menu/tortas.jpeg",
   },
   {
     id: "main-flautas",
@@ -133,6 +146,7 @@ export const menuItems: MenuItem[] = [
     price: 7.00,
     category: "mains",
     popular: true,
+    image: "/images/menu/flautas.jpeg",
   },
   {
     id: "main-gorditas",
@@ -140,6 +154,7 @@ export const menuItems: MenuItem[] = [
     description: "Thick corn cake stuffed with meat of choice, lettuce, tomato, cheese, jalapeño and avocado",
     price: 3.75,
     category: "mains",
+    image: "/images/menu/gorditas.jpeg",
   },
   {
     id: "main-huarache",
@@ -147,6 +162,7 @@ export const menuItems: MenuItem[] = [
     description: "Oval masa base topped with meat of choice, lettuce, tomato, Mexican cheese, avocado and cilantro",
     price: 4.50,
     category: "mains",
+    image: "/images/menu/huarache.jpeg",
   },
   {
     id: "main-tamales",
@@ -162,6 +178,8 @@ export const menuItems: MenuItem[] = [
     price: 13.00,
     category: "mains",
     popular: true,
+    spicy: true,
+    image: "/images/menu/camarones-a-la-diabla.jpeg",
   },
   {
     id: "main-fajitas",
@@ -169,6 +187,7 @@ export const menuItems: MenuItem[] = [
     description: "Sizzling combo of shrimp, chicken and beef with rice, beans, bell peppers and roasted onions",
     price: 13.00,
     category: "mains",
+    image: "/images/menu/sizzling-steak-fajitas-florida.jpeg",
   },
 
   // LUNCH PLATES
@@ -179,6 +198,7 @@ export const menuItems: MenuItem[] = [
     description: "Grilled steak served with rice, beans, jalapeño, roasted onions and tortillas",
     price: 10.35,
     category: "lunch",
+    image: "/images/menu/carne-asada.jpeg",
   },
   {
     id: "lunch-pollo",
@@ -187,6 +207,7 @@ export const menuItems: MenuItem[] = [
     description: "Grilled chicken served with rice, beans, jalapeño, roasted onions and tortillas",
     price: 10.35,
     category: "lunch",
+    image: "/images/menu/tacos-de-pollo.jpeg",
   },
   {
     id: "lunch-costilla",

@@ -10,7 +10,6 @@ const navLinks = [
   { label: 'Menu',    href: '/menu'    },
   { label: 'About',   href: '/about'   },
   { label: 'Hours',   href: '/#hours'   },
-  { label: 'Contact', href: '/#contact' },
 ]
 
 // Mobile dropdown additionally surfaces a "Home" link at the top, since
