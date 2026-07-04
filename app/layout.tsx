@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://elnopalitopsl.com'),
   title: 'El Nopalito | Authentic Mexican Food Truck — Port St. Lucie, FL',
   description:
-    "El Nopalito is Port St. Lucie's most loved Mexican food truck. Authentic tacos, birria, carne asada, al pastor, burritos and more. Handmade tortillas. 101 NW Airoso Blvd. Open Wed–Sun 11am–9pm.",
+    "El Nopalito is Port St. Lucie's most loved Mexican food truck. Authentic tacos, birria, carne asada, al pastor, burritos and more. Handmade tortillas. 100 NW Airoso Blvd. Open Wed–Sun 11am–9pm.",
   keywords:
     'El Nopalito, Mexican food truck Port St Lucie, tacos Port St Lucie, birria tacos, carne asada, authentic Mexican food Florida, best tacos PSL',
   alternates: {

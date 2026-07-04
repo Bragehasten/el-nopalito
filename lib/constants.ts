@@ -4,7 +4,7 @@ export const BUSINESS = {
   name: "El Nopalito",
   tagline: "Authentic Mexican Street Food Since Day One",
   address: {
-    street: "101 NW Airoso Blvd",
+    street: "100 NW Airoso Blvd",
     city: "Port St. Lucie",
     state: "FL",
     zip: "34983",
@@ -12,7 +12,7 @@ export const BUSINESS = {
   phone: "(772) 979-4747",
   phoneE164: PHONE_E164,
   phoneHref: `tel:${PHONE_E164}`,
-  googleMapsUrl: "https://maps.google.com/?q=El+Nopalito+101+NW+Airoso+Blvd+Port+St+Lucie+FL",
+  googleMapsUrl: "https://maps.google.com/?q=El+Nopalito+100+NW+Airoso+Blvd+Port+St+Lucie+FL",
   googleMapsEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3544.8453399137243!2d-80.3499865!3d27.3180285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88deed3439684ed9%3A0x52f3c2a95530b769!2sTacos%20El%20Nopalito!5e0!3m2!1sen!2s!4v1747699832574!5m2!1sen!2s",
   geo: { lat: 27.3180285, lng: -80.3499865 },
   googleRating: 4.7,
