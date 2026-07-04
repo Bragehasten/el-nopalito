@@ -40,6 +40,28 @@
   }
 }
 
+@keyframes marquee {
+  from { transform: translateX(0%); }
+  to   { transform: translateX(-100%); }
+}
+
+/* Layered (not a bare top-level rule) so it participates in the same
+   cascade layer as Tailwind's generated utilities - e.g. `group-hover:`
+   overrides. Unlayered CSS always wins over layered CSS regardless of
+   specificity, which silently defeated the hover-to-pause override when
+   this was declared unlayered. */
+@layer utilities {
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+      animation: none;
+    }
+  }
+}
+
 @layer base {
   *,
   *::before,
