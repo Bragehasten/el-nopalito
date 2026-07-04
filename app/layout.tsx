@@ -3,7 +3,6 @@ import { Playfair_Display, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import Navbar from '@/components/Navbar'
-import ContactBar from '@/components/ContactBar'
 import Footer from '@/components/Footer'
 import MobileBar from '@/components/MobileBar'
 import { BUSINESS, getOpeningHoursSpecification } from '@/lib/constants'
@@ -94,7 +93,6 @@ export default function RootLayout({
       <body className="font-body bg-brand-cream text-brand-dark min-h-screen antialiased overflow-x-hidden">
         <Navbar />
         {children}
-        <ContactBar />
         <Footer />
         {/* Reserves space so the fixed MobileBar doesn't cover the
             end of the page content on mobile. */}
