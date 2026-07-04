@@ -1,20 +1,4 @@
-type Review = { quote: string; name: string }
-type Stat   = { emoji: string; title: string; sub: string }
-
-const reviews: Review[] = [
-  {
-    quote: "Best tacos in Port St. Lucie. The birria is next level — rich, flavorful, and that dipping broth is everything. I drive here every weekend.",
-    name: "Maria T.",
-  },
-  {
-    quote: "Ever since moving from California I struggled to find real authentic Mexican food in Florida. El Nopalito is the real deal. The flautas are THE BEST I've ever had.",
-    name: "James R.",
-  },
-  {
-    quote: "Fresh, fast, and super affordable. The carne asada has a unique smoked flavor unlike anything else around here. This place never misses.",
-    name: "Sofia M.",
-  },
-]
+type Stat = { emoji: string; title: string; sub: string }
 
 const stats: Stat[] = [
   { emoji: "🌮", title: "Handmade",  sub: "Tortillas" },
@@ -30,90 +14,58 @@ export default function AboutSection() {
       <div className="h-12 md:h-16" />
       <div className="w-full max-w-5xl mx-auto px-8
         flex flex-col items-center">
-        <div className="w-full grid grid-cols-1
-          lg:grid-cols-2 gap-24 items-center">
-
-          {/* Left column — story */}
-          <div className="flex flex-col items-center
-            text-center w-full">
-            <p className="text-brand-gray text-base
+        <div className="w-full max-w-2xl mx-auto
+          flex flex-col items-center text-center">
+          <p className="text-brand-gray text-base
+          leading-relaxed mb-6">
+            El Nopalito has been serving the Port St.
+            Lucie community authentic Mexican street food
+            made the traditional way — handmade tortillas,
+            slow-marinated meats, and recipes passed down
+            through generations.
+          </p>
+          <p className="text-brand-gray text-base
             leading-relaxed mb-6">
-              El Nopalito has been serving the Port St.
-              Lucie community authentic Mexican street food
-              made the traditional way — handmade tortillas,
-              slow-marinated meats, and recipes passed down
-              through generations.
-            </p>
-            <p className="text-brand-gray text-base
-              leading-relaxed mb-6">
-              Every taco, burrito, and torta is crafted
-              fresh to order. From the smoky carne asada
-              to the rich birria dipping broth, every bite
-              reflects the bold, genuine flavors of
-              authentic Mexican street food.
-            </p>
-            <p className="text-brand-gray text-base
-              leading-relaxed mb-6">
-              Located at 101 NW Airoso Blvd in Port St.
-              Lucie, we&apos;re proud to be the Treasure
-              Coast&apos;s go-to spot for affordable,
-              authentic flavor. Come hungry. Leave happy.
-            </p>
+            Every taco, burrito, and torta is crafted
+            fresh to order. From the smoky carne asada
+            to the rich birria dipping broth, every bite
+            reflects the bold, genuine flavors of
+            authentic Mexican street food.
+          </p>
+          <p className="text-brand-gray text-base
+            leading-relaxed mb-6">
+            Located at 100 NW Airoso Blvd in Port St.
+            Lucie, we&apos;re proud to be the Treasure
+            Coast&apos;s go-to spot for affordable,
+            authentic flavor. Come hungry. Leave happy.
+          </p>
 
-            {/* Stat cards */}
-            <div className="flex items-center
-              justify-center gap-4 flex-wrap mt-10
-              w-full">
-              {stats.map((stat) => (
-                <div
-                  key={stat.title}
-                  className="flex flex-col items-center
-                    justify-center text-center flex-1
-                    min-w-[120px] max-w-[160px]
-                    bg-brand-cream rounded-2xl p-5
-                    border border-brand-cream-dark"
-                >
-                  <p className="text-4xl mb-3">
-                    {stat.emoji}
-                  </p>
-                  <p className="text-sm font-bold
-                    text-brand-dark mb-1">
-                    {stat.title}
-                  </p>
-                  <p className="text-xs text-brand-gray">
-                    {stat.sub}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right column —eviews */}
-          <div className="flex flex-col gap-6 w-full">
-            {reviews.map((review) => (
+          {/* Stat cards */}
+          <div className="flex items-center
+            justify-center gap-4 flex-wrap mt-10
+            w-full">
+            {stats.map((stat) => (
               <div
-                key={review.name}
-                className="bg-brand-cream rounded-2xl p-6
-                  border border-brand-cream-dark
-                  hover:shadow-md transition-shadow
-                  duration-200"
+                key={stat.title}
+                className="flex flex-col items-center
+                  justify-center text-center flex-1
+                  min-w-[120px] max-w-[160px]
+                  bg-brand-cream rounded-2xl p-5
+                  border border-brand-cream-dark"
               >
-                <p className="text-brand-yellow text-lg
-                  mb-3">
-                  ★★★★★
+                <p className="text-4xl mb-3">
+                  {stat.emoji}
                 </p>
-                <p className="text-brand-dark text-sm
-                  leading-relaxed italic mb-4">
-                  {review.quote}
+                <p className="text-sm font-bold
+                  text-brand-dark mb-1">
+                  {stat.title}
                 </p>
-                <p className="text-brand-red text-sm
-                  font-semibold">
-                  — {review.name}
+                <p className="text-xs text-brand-gray">
+                  {stat.sub}
                 </p>
               </div>
             ))}
           </div>
-
         </div>
       </div>
       <div className="h-12 md:h-16" />
