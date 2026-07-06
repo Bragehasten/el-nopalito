@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import MobileBar from '@/components/MobileBar'
 import { BUSINESS, getOpeningHoursSpecification } from '@/lib/constants'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const playfairDisplay = Playfair_Display({
   subsets: ['latin'],
@@ -103,6 +104,7 @@ export default function RootLayout({
         />
         <MobileBar />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
