@@ -23,7 +23,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://elnopalitopsl.com'),
+  metadataBase: new URL('https://tacoselnopalitopsl.com'),
   title: 'El Nopalito | Authentic Mexican Food Truck — Port St. Lucie, FL',
   description:
     "El Nopalito is Port St. Lucie's most loved Mexican food truck. Authentic tacos, birria, carne asada, al pastor, burritos and more. Handmade tortillas. 100 NW Airoso Blvd. Open Wed–Sun 11am–9pm.",
@@ -57,7 +57,7 @@ const jsonLd = {
   name: BUSINESS.name,
   description:
     'Authentic Mexican food truck serving tacos, birria, carne asada, al pastor, burritos and more in Port St. Lucie, FL.',
-  url: 'https://elnopalitopsl.com',
+  url: 'https://tacoselnopalitopsl.com',
   telephone: BUSINESS.phoneE164,
   address: {
     '@type': 'PostalAddress',
