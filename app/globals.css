@@ -82,6 +82,12 @@
     scroll-margin-top: 4rem;
   }
 
+  /* Category sections inside the continuous-scroll menu also need to clear
+     the sticky category-pill bar (in addition to the fixed navbar). */
+  #tacos, #mains, #lunch {
+    scroll-margin-top: 8rem;
+  }
+
   body {
     font-family: var(--font-inter), sans-serif;
     background-color: var(--brand-cream);

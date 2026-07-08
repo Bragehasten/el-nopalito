@@ -97,7 +97,17 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         <div className="border-t border-white/10 mt-8 pt-6 md:mt-16 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
           <p>© {new Date().getFullYear()} Tacos El Nopalito. All rights reserved.</p>
-          <p className="hover:text-white transition-colors">Designed &amp; Built by Launchpoint Web Design</p>
+          <p>
+            Designed &amp; Built by{' '}
+            <a
+              href="https://launchpointwebdesign.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-brand-yellow transition-colors duration-300"
+            >
+              Launchpoint Web Design
+            </a>
+          </p>
         </div>
       </div>
     </footer>

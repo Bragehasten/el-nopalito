@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import OrderNowButton from '@/components/OrderNowButton'
 
 type FeaturedItem = {
@@ -48,6 +49,13 @@ export default function FeaturedItems() {
             </div>
           ))}
         </div>
+
+        <Link
+          href="/menu"
+          className="mt-12 md:mt-16 inline-flex items-center justify-center gap-2 border-2 border-brand-yellow text-brand-yellow hover:bg-brand-yellow hover:text-brand-dark font-semibold text-sm rounded-full px-6 py-3 transition-colors"
+        >
+          View Full Menu →
+        </Link>
       </div>
     </section>
   )

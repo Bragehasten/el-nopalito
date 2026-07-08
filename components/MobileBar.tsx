@@ -1,10 +1,14 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import { useDirectionsUrl } from '@/lib/directions'
 import OrderNowButton from '@/components/OrderNowButton'
 
 export default function MobileBar() {
+  const pathname = usePathname()
   const directionsUrl = useDirectionsUrl()
+
+  if (pathname === '/menu') return null
 
   return (
     <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 flex bg-brand-dark/80 backdrop-blur-md supports-[backdrop-filter]:bg-brand-dark/60 border-t border-white/10 pb-[env(safe-area-inset-bottom)]">

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import MenuSection from '@/components/MenuSection'
-import OrderNowButton from '@/components/OrderNowButton'
 import MenuStickyOrderBar from '@/components/MenuStickyOrderBar'
 import { menuItems, menuCategories } from '@/data/menuData'
 
@@ -59,6 +58,7 @@ export default function MenuPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(menuJsonLd) }}
       />
       <section
+        id="menu-hero"
         className="w-full flex flex-col items-center text-center"
         style={{
           background: 'linear-gradient(to bottom, #26211D, #3A2318)'
@@ -76,15 +76,6 @@ export default function MenuPage() {
           <p className="font-body text-base md:text-xl text-white/80 leading-relaxed mt-4">
             Handmade tortillas. Bold flavors. Real ingredients.
           </p>
-          <div id="menu-hero-order-button" className="flex justify-center mt-6">
-            <OrderNowButton
-              className="w-full max-w-xs min-h-[44px] inline-flex items-center justify-center gap-2
-                bg-brand-yellow text-brand-dark px-8 py-4
-                rounded-full font-bold text-base
-                transition-all duration-200 shadow-lg shadow-orange-500/30
-                hover:scale-105 whitespace-nowrap"
-            />
-          </div>
         </div>
       </section>
       <MenuSection />

@@ -4,14 +4,13 @@ import { useEffect, useState } from 'react'
 import OrderNowButton from '@/components/OrderNowButton'
 
 // Floating "Order Now" button for mobile, shown only once the visitor has
-// scrolled past the hero's own Order Now button (tracked via IntersectionObserver
-// on that button's wrapper, id'd below) — avoids showing two Order Now buttons
-// at once at the top of the page.
+// scrolled past the hero — avoids showing a duplicate CTA right under the
+// Navbar's own Order Now button at the top of the page.
 export default function MenuStickyOrderBar() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    const target = document.getElementById('menu-hero-order-button')
+    const target = document.getElementById('menu-hero')
     if (!target) return
 
     const observer = new IntersectionObserver(
@@ -24,7 +23,7 @@ export default function MenuStickyOrderBar() {
 
   return (
     <div
-      className={`md:hidden fixed bottom-24 right-4 z-50 transition-all duration-300 ${
+      className={`md:hidden fixed bottom-6 right-4 z-50 transition-all duration-300 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
     >
