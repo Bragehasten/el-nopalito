@@ -11,6 +11,10 @@ export default function HoursLocation() {
   // real value is computed after mount, avoiding a hydration mismatch.
   const [open, setOpen] = useState<boolean | null>(null)
   const [todayName, setTodayName] = useState<string | null>(null)
+  // The interactive embed pulls in Google's own Maps JS SDK (~300KB) once it
+  // loads, so it's deferred behind a click instead of loading automatically
+  // as soon as it scrolls into view.
+  const [showMap, setShowMap] = useState(false)
 
   useEffect(() => {
     const refresh = () => {
@@ -91,18 +95,30 @@ export default function HoursLocation() {
           {/* Right column — map + directions */}
           <div>
             <div className="w-full aspect-[4/3] md:aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/10">
-              <iframe
-                width="100%"
-                height="100%"
-                src={BUSINESS.googleMapsEmbed}
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="El Nopalito Location"
-                className="w-full h-full invert-[.9] hue-rotate-180 contrast-75 saturate-150"
-                suppressHydrationWarning
-              />
+              {showMap ? (
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={BUSINESS.googleMapsEmbed}
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="El Nopalito Location"
+                  className="w-full h-full invert-[.9] hue-rotate-180 contrast-75 saturate-150"
+                  suppressHydrationWarning
+                />
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setShowMap(true)}
+                  className="w-full h-full flex flex-col items-center justify-center gap-3 bg-brand-dark text-white hover:bg-brand-dark/90 transition-colors"
+                >
+                  <span className="text-4xl">📍</span>
+                  <span className="font-semibold text-base">Show Interactive Map</span>
+                  <span className="text-white/60 text-sm px-6 text-center">{BUSINESS_ADDRESS_LINE}</span>
+                </button>
+              )}
             </div>
             <a
               href={directionsUrl}
